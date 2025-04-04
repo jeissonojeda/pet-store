@@ -1,24 +1,46 @@
 <?php 
 
 include('config/database.php');
-$fname =$_POST['f_name'] ;
-$lname =$_POST['l_name'] ;
-$email =$_POST['e_mail'] ;
-$passw =$_POST['p_assw'] ;
+$fname =$_POST['f_name'];
+$lname =$_POST['l_name'];
+$email =$_POST['e_mail'];
+$passw =$_POST['p_assw'];
 
 
-$sql ="INSERT INTO users (firstname, lastname, email, password)
-VALUES ('$fname','$lname','$email','$passw')
+$sql_validate_email="
+select
+count(id) as total
+from
+users
+where
+email='$email' and
+status = true";
+$ans =pg_query($conn, $sql_validate_email);
 
-
-
-";
-$ans =pg_query($conn, $sql);
 if($ans){
-    echo"user has been created successfully";
+    $row = pg_fetch_assoc($ans);
+    if($row['total'] > 0){ 
+    echo "user already exits !!!";
 }else {
-    echo "error";
+    $sql ="INSERT INTO users 
+    (firstname, lastname, email, password)
+    VALUES ('$fname','$lname','$email','$passw')
+    ";
+    $ans =pg_query($conn, $sql);
+    if($ans){
+        echo"user has been created successfully";
+    }else {
+        echo "error";
+    }
 }
+}else {
+    echo "querry error";
+}
+
+
+
+
+
 
 
 
