@@ -1,0 +1,31 @@
+ENTRAR ALA BASE DE DATOS CMD
+
+cd \Program Files\PostgreSQL\12\bin
+\Program Files\PostgreSQL\12\bin>psql.exe -U postgres
+unicesmag
+\l
+\c petstore =conectar base de datos
+ \dt = listar
+ \d users entrar a la tabla
+
+
+SELECT * FROM users;
+
+
+ENTRAR DESDE GIT BASH
+/c/xampp/htdocs/pet-store (main)
+
+
+SUBIR ACTUALIZACIONES
+git add --all
+git commit -m "llenar datos y conexiones"
+ git push origin main
+
+ COMANDOS
+ http://localhost/pet-store/src/signup.php
+
+
+ ENCRIpTAR datos
+ $hashed_password = password_hash($passw,PASSWORD_DEFAULT)
+ icono en la pestaña
+ <link rel="icon" type="image/png" href="src/icons/pet_store1.png">
